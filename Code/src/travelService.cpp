@@ -13,21 +13,21 @@ DaLat::DaLat() {
     booked = 0;
 
     itinerary = {
-        {"Night 1 (≈22:00 - 24:05)", {
+        {"Night 1 (22:00 - 24:05)", {
             "22:00: Pick up guests at meeting points in Ho Chi Minh City (District 12, Tan Binh, District 5, District 1, Thu Duc)",
             "22:35: Pick up at Tan Binh Exhibition Center",
             "22:55: Pick up at Hung Vuong Plaza (District 5)",
             "23:25: Pick up at Youth Cultural House, District 1",
             "Afterwards: Depart for Da Lat, overnight on the bus"
         }},
-        {"Day 1 (≈08:00 - 17:00)", {
+        {"Day 1 (08:00 - 17:00)", {
             "08:00: Arrive in Da Lat, visit Xuan Huong Lake & Lam Vien Square",
             "Visit Van Thanh Flower Village and Hydrangea Flower Field",
             "Lunch: Local restaurant",
             "Afternoon: Langbiang Mountain or Linh An Pagoda",
             "17:00: Return to hotel, check in, free evening to explore Da Lat"
         }},
-        {"Day 2 (≈07:30 - 17:30)", {
+        {"Day 2 (07:30 - 17:30)", {
             "07:30: Breakfast at hotel",
             "08:30: Start tour: Clay Tunnel",
             "Next: High-tech Strawberry Garden & Da Lat Market",
@@ -35,7 +35,7 @@ DaLat::DaLat() {
             "Afternoon: Datanla Waterfall or Fresh Garden",
             "17:30: Return to hotel, dinner, rest"
         }},
-        {"Day 3 (≈06:30 - 17:00)", {
+        {"Day 3 (06:30 - 17:00)", {
             "06:30: Breakfast, check out",
             "07:30: Visit Domaine Church & Old French Villa Village",
             "Buy Da Lat specialties (jam, tea, milk, etc.) at local market",
@@ -77,11 +77,12 @@ DaLat::DaLat(const DaLat& other)
 
 string DaLat::getInfo() const {
     ostringstream oss;
-    oss << "--- " << tourName << " (" << tourCode << ") ----\n"
+    oss << std::fixed << std::setprecision(0);
+    oss << "---- " << tourName << " (" << tourCode << ") ----\n"
         << "Departure date: " << departureDate << "\n"
         << "Transportation: " << transportation << "\n"
         << "Hotel: " << hotel << "\n"
-        << "Tour price: " << tourPrice << " VND\n"
+        << "Tour price: " << tourPrice << " VND/person\n"
         << "Contact for booking: " << contact << "\n"
         << "Group size: " << booked << "/" << maxGroup << "\n\n"
         << "=== Itinerary ===\n";
@@ -122,7 +123,7 @@ SapaHaGiang::SapaHaGiang() {
             "06:30 - 07:00: Pickup from hotels in Hanoi Old Quarter",
             "Travel via Noi Bai - Lao Cai expressway with rest stops",
             "13:00 - 13:30: Arrive Sapa, lunch and check-in",
-            "Afternoon: Trek Ham Rong Mountain Park - Orchid, Apple, Apple Guava Gardens, Heaven Gate, Stone Turtle, TV Tower, Cloud Yard…",
+            "Afternoon: Trek Ham Rong Mountain Park - Orchid, Apple, Apple Guava Gardens, Heaven Gate, Stone Turtle, TV Tower, Cloud Yard",
             "18:00: Dinner; evening free to explore Stone Church, Sapa love market (Sat nights), enjoy local BBQ and San Lung wine"
         }},
         {"Day 2 (07:00 - 22:00)", {
@@ -137,26 +138,26 @@ SapaHaGiang::SapaHaGiang() {
         {"Day 3 (04:00 - 21:00)", {
             "04:00 - 04:30: Arrive Ha Giang, transfer to homestay, freshen up",
             "06:30: Breakfast at homestay",
-            "07:00: Start Ha Giang loop: Km0 photo stop, Bac Sum pass, Quan Ba Heaven's Gate, Twin Stone Mountain, Join-Lang weaving village Lũng Tám, Solo tree in Quan Ba",
-            "Lunch in Yên Minh or Dong Van area",
-            "Afternoon: Explore Tham Ma pass, Phố Cáo, Dốc Chín Khoanh, Sủng Là village (Stone house), Lung Cu flagpole",
-            "18:00: Dinner in Đồng Văn; free evening walking around Old Quarter"
+            "07:00: Start Ha Giang loop: Km0 photo stop, Bac Sum pass, Quan Ba Heaven's Gate, Twin Stone Mountain, Join-Lang weaving village Lung Tam, Solo tree in Quan Ba",
+            "Lunch in Yen Minh or Dong Van area",
+            "Afternoon: Explore Tham Ma pass, Pho Cao, Doc Chin Khoanh, Sung La village (Stone house), Lung Cu flagpole",
+            "18:00: Dinner in Dong Van; free evening walking around Old Quarter"
         }},
         {"Day 4 (08:00 - 03:30 next day)", {
             "Breakfast at hotel; on Sundays join Dong Van Market (optional)",
             "08:00: Checkout and visit Ma Pi Leng Pass (16km Happiness Road)",
-            "Scenic stop at Tu Sản Canyon (1,500m altitude)",
-            "Boat cruise on Nho Que River through Tu Sản Canyon (optional costs 200k-250k VND)",
-            "Lunch in Đồng Văn",
+            "Scenic stop at Tu San Canyon (1,500m altitude)",
+            "Boat cruise on Nho Que River through Tu San Canyon (optional costs 200k-250k VND)",
+            "Lunch in Dong Van",
             "16:00: Return to Ha Giang",
-            "Option A: Transfer to limousine to Hanoi, arrive ~23-24h (+50k VND surcharge)",
-            "Option B: Overnight sleeper bus to Hanoi, arrive Nội Bài ~03:00, Hanoi ~03:30"
+            "Option A: Transfer to limousine to Hanoi, arrive 23-24h (+50k VND surcharge)",
+            "Option B: Overnight sleeper bus to Hanoi, arrive Noi Bai 03:00, Hanoi 03:30"
         }}
     };
 
     includedServices = {
-        {"Transport", "7-29 seat bus in Ha Giang + Sapa-ha giường nằm buses on inter-city segments"},
-        {"Accommodation", "02 nights in hotel (Sapa 3★, Đồng Văn 2★), 01 night homestay + 01 night sleeper bus"},
+        {"Transport", "7-29 seat bus in Ha Giang + Sapa-ha sleeper buses on inter-city segments"},
+        {"Accommodation", "02 nights in hotel (Sapa 3*, Dong Van 2*), 01 night homestay + 01 night sleeper bus"},
         {"Meals", "08 main meals, breakfasts as per program"},
         {"Entrance Fees", "All visits except Fansipan cable car (optional)"},
         {"Guide", "Experienced English-Vietnamese tour guide"},
@@ -185,6 +186,7 @@ SapaHaGiang::SapaHaGiang(const SapaHaGiang& other)
 
 string SapaHaGiang::getInfo() const {
     ostringstream oss;
+    oss << std::fixed << std::setprecision(0);
     oss << "---- " << tourName << " (" << tourCode << ") ----\n"
         << "Departure point: " << departurePoint << "\n"
         << "Tour price: " << tourPrice << " VND/person\n"
@@ -224,7 +226,7 @@ HaLongTuanChau::HaLongTuanChau() {
     booked = 0;
 
     itinerary = {
-        {"Day 1 (≈08:30 - 12:15)", {
+        {"Day 1 (08:30 - 12:15)", {
             "08:30: Pick-up from Hanoi (Old Quarter) or Ha Long",
             "12:00: Arrive at Tuan Chau Marina",
             "12:15: Board cruise - welcome drink & safety briefing",
@@ -234,7 +236,7 @@ HaLongTuanChau::HaLongTuanChau() {
             "17:30: Sunset cooking demo, 19:00: Dinner on board",
             "21:00: Evening activities: movie, squid fishing or bar"
         }},
-        {"Day 2 (≈06:15 - 10:30)", {
+        {"Day 2 (06:15 - 10:30)", {
             "06:15: Tai Chi on sundeck",
             "07:00: Light breakfast",
             "07:45: Visit Sung Sot (Surprise) Cave",
@@ -282,6 +284,7 @@ HaLongTuanChau::HaLongTuanChau(const HaLongTuanChau& other)
 
 string HaLongTuanChau::getInfo() const {
     ostringstream oss;
+    oss << std::fixed << std::setprecision(0);
     oss << "---- " << tourName << " (" << tourCode << ") ----\n"
         << "Departure point: " << departurePoint << "\n"
         << "Accommodation: " << accommodation << "\n"
@@ -384,6 +387,7 @@ DaNang::DaNang(const DaNang& other)
 
 string DaNang::getInfo() const {
     ostringstream oss;
+    oss << std::fixed << std::setprecision(0);
     oss << "---- " << tourName << " (" << tourCode << ") ----\n"
         << "Departure point: " << departurePoint << "\n"
         << "Hotel: " << hotel << "\n"
@@ -462,7 +466,7 @@ PhuQuoc::PhuQuoc() {
     };
 
     includedServices = {
-        {"Transportation", "High-quality sleeper bus HCMC ↔ Rach Gia, speedboat Rach Gia ↔ Phu Quoc"},
+        {"Transportation", "High-quality sleeper bus HCM City -> Rach Gia, speedboat Rach Gia -> Phu Quoc"},
         {"Accommodation", "2 nights in 3-star hotel in Phu Quoc (2-4 people/room)"},
         {"Meals", "According to program (2 breakfasts, 3 lunches, 2 dinners)"},
         {"Sightseeing", "Entrance tickets to all destinations in itinerary"},
@@ -493,6 +497,7 @@ PhuQuoc::PhuQuoc(const PhuQuoc& other)
 
 string PhuQuoc::getInfo() const {
     ostringstream oss;
+    oss << std::fixed << std::setprecision(0);
     oss << "---- " << tourName << " (" << tourCode << ") ----\n"
         << "Departure Point: " << departurePoint << "\n"
         << "Hotel: " << hotel << "\n"
