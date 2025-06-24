@@ -1,104 +1,104 @@
 #pragma once
-#include<vector>
-#include<string>
+#include <vector>
+#include <string>
 using namespace std;
 
-struct Gio {
+struct Time {
     int h = 0;
     int m = 0;
 };
 
-struct Ngay {
+struct Date {
     int d = 0;
     int m = 0;
     int y = 0;
 };
 
-class Xe {
+class Vehicle {
 private:
-    static vector<Xe*> danhSachXeMau;
-    string bienSo;
-    int soChoNgoi;
+    static vector<Vehicle*> prototypeList;
+    string licensePlate;
+    int seatCount;
 
 public:
-    Xe();
-    Xe(const Xe& xe);
-    virtual Xe* Clone() = 0;
-    virtual string getLoaiXe() = 0;
-    static void themXeMau(Xe* xe);
-    static Xe* taoXe(string loaiXe);
-    static void xoaXeMau();
-    virtual ~Xe() {};
-    void nhapXe();
-    void xuatXe();
-    void setBienSo(string bienSo);
-    void setSoChoNgoi(int soChoNgoi);
-    string getBienSo() const;
-    int getSoChoNgoi() const;
+    Vehicle();
+    Vehicle(const Vehicle& vehicle);
+    virtual Vehicle* Clone() = 0;
+    virtual string getVehicleType() = 0;
+    static void addPrototype(Vehicle* vehicle);
+    static Vehicle* createVehicle(string type);
+    static void clearPrototypes();
+    virtual ~Vehicle() {};
+    void inputVehicle();
+    void outputVehicle();
+    void setLicensePlate(string licensePlate);
+    void setSeatCount(int seatCount);
+    string getLicensePlate() const;
+    int getSeatCount() const;
 };
 
-class ThueXe {
+class VehicleRental {
 private:
-    Xe* xe;
-    Ngay ngayThue;
-    Gio gioBatDau;
-    Gio gioKetThuc;
-    string thanhPhoDangO;
+    Vehicle* vehicle;
+    Date rentalDate;
+    Time startTime;
+    Time endTime;
+    string currentCity;
 
 public:
-    ThueXe();
-    ThueXe(Xe* xe, Ngay ngay, Gio batDau, Gio ketThuc, string thanhPho);
-    ~ThueXe();
+    VehicleRental();
+    VehicleRental(Vehicle* vehicle, Date date, Time start, Time end, string city);
+    ~VehicleRental();
 
-    void nhapThongTinThue();
-    void xuatThongTinThue() const;
+    void inputRentalInfo();
+    void outputRentalInfo() const;
 };
 
-class XeMay : public Xe {
+class Motorbike : public Vehicle {
 public:
-    XeMay() : Xe() {}
-    XeMay(const XeMay& xe) : Xe(xe) {}
+    Motorbike() : Vehicle() {}
+    Motorbike(const Motorbike& vehicle) : Vehicle(vehicle) {}
 
-    string getLoaiXe() override {
-        return "Xe may";
+    string getVehicleType() override {
+        return "Motorbike";
     }
 
-    Xe* Clone() override {
-        return new XeMay(*this);
-    }
-};
-
-class XeDap : public Xe {
-public:
-    XeDap() : Xe() {}
-    XeDap(const XeDap& xe) : Xe(xe) {}
-
-    string getLoaiXe() override {
-        return "Xe dap";
-    }
-
-    Xe* Clone() override {
-        return new XeDap(*this);
+    Vehicle* Clone() override {
+        return new Motorbike(*this);
     }
 };
 
-class XeOtoTuLai : public Xe {
+class Bicycle : public Vehicle {
 public:
-    XeOtoTuLai() : Xe() {}
-    XeOtoTuLai(const XeOtoTuLai& xe) : Xe(xe) {}
+    Bicycle() : Vehicle() {}
+    Bicycle(const Bicycle& vehicle) : Vehicle(vehicle) {}
 
-    string getLoaiXe() override {
-        return "O to tu lai";
+    string getVehicleType() override {
+        return "Bicycle";
     }
 
-    Xe* Clone() override {
-        return new XeOtoTuLai(*this);
+    Vehicle* Clone() override {
+        return new Bicycle(*this);
     }
 };
 
-class XeFactory {
+class SelfDriveCar : public Vehicle {
 public:
-    static Xe* createXe(const string& loaiXe) {
-        return Xe::taoXe(loaiXe);
+    SelfDriveCar() : Vehicle() {}
+    SelfDriveCar(const SelfDriveCar& vehicle) : Vehicle(vehicle) {}
+
+    string getVehicleType() override {
+        return "Self-drive car";
+    }
+
+    Vehicle* Clone() override {
+        return new SelfDriveCar(*this);
+    }
+};
+
+class VehicleFactory {
+public:
+    static Vehicle* createVehicle(const string& type) {
+        return Vehicle::createVehicle(type);
     }
 };
