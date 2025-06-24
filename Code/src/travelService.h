@@ -2,6 +2,17 @@
 #define F6B5D65E_852A_4768_845D_BB9968DC2DCA
 #include "main.h"
 
+struct Time {
+    int hour = 0;
+    int minute = 0;
+};
+
+struct Date {
+    int day = 0;
+    int month = 0;
+    int year = 0;
+};
+
 class TravelService {
 public:
     virtual string getInfo() const = 0;
@@ -126,22 +137,76 @@ public:
     bool book(int groupSize) override;
 };
 
-class FlightTicketService : public TravelService {
-public:
-    FlightTicketService();
-    string getInfo() const override;
-};
-
+/*----------------------Bus--------------------*/
 class BusTicketService : public TravelService {
+private:
+    string tripCode;
+    string departure;
+    string destination;
+    Time departureTime;
+    Date departureDate;
+    int ticketPrice;
+    int remainingTickets;
+    string licensePlate;
+    vector<tuple<string, Time, int>> stops;
+    string baggagePolicy;
+    string cancellationPolicy;
+    string contactInfo;
+
 public:
     BusTicketService();
+    BusTicketService(const BusTicketService& other);
+    ~BusTicketService();
     string getInfo() const override;
+    bool book(int groupSize) override;  
 };
 
+/*----------------------Flight--------------------*/
+class FlightTicketService : public TravelService {
+private:
+    string flightCode;
+    string departure;
+    string destination;
+    Time departureTime;
+    Date departureDate;
+    int ticketPrice;
+    int remainingTickets;
+    string airplaneCode;
+    vector<tuple<string, Time, int>> stops;
+    string baggagePolicy;
+    string cancellationPolicy;
+    string contactInfo;
+
+public:
+    FlightTicketService();
+    FlightTicketService(const FlightTicketService& other);
+    ~FlightTicketService();
+    string getInfo() const override;
+    bool book(int groupSize) override;  
+};
+
+/*----------------------Train--------------------*/
 class TrainTicketService : public TravelService {
+private:
+    string trainCode;
+    string stationDeparture;
+    string stationArrival;
+    Time departureTime;
+    Date departureDate;
+    int ticketPrice;
+    int remainingTickets;
+    string trainID;
+    vector<tuple<string, Time, int>> stops;
+    string baggagePolicy;
+    string cancellationPolicy;
+    string contactInfo;
+
 public:
     TrainTicketService();
+    TrainTicketService(const TrainTicketService& other);
+    ~TrainTicketService();
     string getInfo() const override;
+    bool book(int groupSize) override;  
 };
 
 #endif /* F6B5D65E_852A_4768_845D_BB9968DC2DCA */
