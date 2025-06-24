@@ -126,21 +126,71 @@ public:
     bool book(int groupSize) override;
 };
 
-class FlightTicketService : public TravelService {
-public:
-    FlightTicketService();
-    string getInfo() const override;
-};
-
 class BusTicketService : public TravelService {
+private:
+    string tripCode;
+    string departure;
+    string destination;
+    Time departureTime;
+    Date departureDate;
+    int ticketPrice;
+    int remainingTickets;
+    string licensePlate;
+    vector<tuple<string, Time, int>> stops;
+    string baggagePolicy;
+    string cancellationPolicy;
+    string contactInfo;
+
 public:
     BusTicketService();
+    BusTicketService(const BusTicketService& other);
+    ~BusTicketService();
     string getInfo() const override;
 };
 
+/*----------------------Flight--------------------*/
+class FlightTicketService : public TravelService {
+private:
+    string flightCode;
+    string departure;
+    string destination;
+    Time departureTime;
+    Date departureDate;
+    int ticketPrice;
+    int remainingTickets;
+    string airplaneCode;
+    vector<tuple<string, Time, int>> stops;
+    string baggagePolicy;
+    string cancellationPolicy;
+    string contactInfo;
+
+public:
+    FlightTicketService();
+    FlightTicketService(const FlightTicketService& other);
+    ~FlightTicketService();
+    string getInfo() const override;
+};
+
+/*----------------------Train--------------------*/
 class TrainTicketService : public TravelService {
+private:
+    string trainCode;
+    string stationDeparture;
+    string stationArrival;
+    Time departureTime;
+    Date departureDate;
+    int ticketPrice;
+    int remainingTickets;
+    string trainID;
+    vector<tuple<string, Time, int>> stops;
+    string baggagePolicy;
+    string cancellationPolicy;
+    string contactInfo;
+
 public:
     TrainTicketService();
+    TrainTicketService(const TrainTicketService& other);
+    ~TrainTicketService();
     string getInfo() const override;
 };
 
